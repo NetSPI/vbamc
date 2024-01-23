@@ -14,7 +14,7 @@ namespace vbamc
 {
     public class VbaCompiler
     {
-        private IList<ModuleUnit> modules = new List<ModuleUnit>();
+        public IList<ModuleUnit> modules = new List<ModuleUnit>();
 
         public IDictionary<string, string> ExtendedProperties { get; set; } = new Dictionary<string, string>();
 
@@ -118,9 +118,14 @@ namespace vbamc
             storage.Save(stream);
         }
 
-        public void CompilePowerPointMacroFile(Stream outputMacroFileStream, Stream vbaProjectStream, PresentationDocumentType documentType, string? customSourcePath = null)
-        {
-            var macroTemplatePath = Path.Combine(AppContext.BaseDirectory, @"data/MacroTemplate.potm");
+        public void CompilePowerPointMacroFile(
+            Stream outputMacroFileStream, 
+            Stream vbaProjectStream, 
+            PresentationDocumentType documentType, 
+            string documentPath,
+            string? customSourcePath = null
+        ) {
+            var macroTemplatePath = Path.Combine(AppContext.BaseDirectory, documentPath);
             var macroTemplate = PresentationDocument.CreateFromTemplate(macroTemplatePath);
             var mainDoc = macroTemplate.PresentationPart;
             if (mainDoc != null)
@@ -178,14 +183,19 @@ namespace vbamc
             using var macroFile = macroTemplate.Clone(outputMacroFileStream);
         }
 
-        public void CompileWordMacroFile(Stream outputMacroFileStream, Stream vbaProjectStream, WordprocessingDocumentType documentType, string? customSourcePath = null)
-        {
+        public void CompileWordMacroFile(
+            Stream outputMacroFileStream, 
+            Stream vbaProjectStream, 
+            WordprocessingDocumentType documentType, 
+            string documentPath, 
+            string? customSourcePath = null
+        ) {
             if (documentType != WordprocessingDocumentType.MacroEnabledDocument)
             {
                 throw new ArgumentOutOfRangeException(nameof(documentType), "Compiler supports only WordprocessingDocumentType.MacroEnabledDocument value.");
             }
 
-            var macroTemplatePath = Path.Combine(AppContext.BaseDirectory, @"data/MacroTemplate.dotx");
+            var macroTemplatePath = Path.Combine(AppContext.BaseDirectory, documentPath);
             var macroTemplate = WordprocessingDocument.CreateFromTemplate(macroTemplatePath);
             var mainDoc = macroTemplate.MainDocumentPart;
             if (mainDoc != null)

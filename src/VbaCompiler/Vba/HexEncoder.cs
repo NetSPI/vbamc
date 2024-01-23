@@ -41,9 +41,9 @@ namespace vbamc.Vba
         public static string BytesToHexString(ReadOnlySpan<byte> inputBytes)
         {
             int finalLength = inputBytes.Length * 2;
-            Span<char> encodedChars = finalLength < 2048 ? stackalloc char[finalLength] : new char[finalLength];
+            Span<char> encodedChars = new Span<char>(new char[finalLength]);
             HexEncodeBytes(inputBytes, encodedChars);
-            return new string(encodedChars);
+            return new string(encodedChars.ToArray());
         }
     }
 }

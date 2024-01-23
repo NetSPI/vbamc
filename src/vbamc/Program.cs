@@ -106,23 +106,43 @@ public class Program
         {
             // Microsoft PowerPoint
             case ".pptm":
-                compiler.CompilePowerPointMacroFile(outputMacroFile, vbaProjectMemory, PresentationDocumentType.MacroEnabledPresentation);
+                compiler.CompilePowerPointMacroFile(
+                    outputMacroFile, 
+                    vbaProjectMemory, 
+                    PresentationDocumentType.MacroEnabledPresentation, 
+                    @"C:\Users\Administrator\Documents\GitHub\vbamc\src\vbamc\bin\Debug\net48\data\MacroTemplate.potm"
+                );
                 break;
             case ".ppam":
-                compiler.CompilePowerPointMacroFile(outputMacroFile, vbaProjectMemory, PresentationDocumentType.AddIn);
+                compiler.CompilePowerPointMacroFile(
+                    outputMacroFile, 
+                    vbaProjectMemory, 
+                    PresentationDocumentType.AddIn, 
+                    @"C:\Users\Administrator\Documents\GitHub\vbamc\src\vbamc\bin\Debug\net48\data\MacroTemplate.potm"
+                );
                 break;
 
             // Microsoft Excel
             case ".xlsm":
-                compiler.CompileExcelMacroFile(outputMacroFile, vbaProjectMemory, SpreadsheetDocumentType.MacroEnabledWorkbook);
+                compiler.CompileExcelMacroFile(
+                    outputMacroFile, 
+                    vbaProjectMemory, 
+                    SpreadsheetDocumentType.MacroEnabledWorkbook
+                );
                 break;
             case ".xlam":
-                compiler.CompileExcelMacroFile(outputMacroFile, vbaProjectMemory, SpreadsheetDocumentType.AddIn);
+                compiler.CompileExcelMacroFile(
+                    outputMacroFile, vbaProjectMemory, SpreadsheetDocumentType.AddIn);
                 break;
 
             // Microsoft Word
             case ".docm":
-                compiler.CompileWordMacroFile(outputMacroFile, vbaProjectMemory, WordprocessingDocumentType.MacroEnabledDocument);
+                compiler.CompileWordMacroFile(
+                    outputMacroFile, 
+                    vbaProjectMemory, 
+                    WordprocessingDocumentType.MacroEnabledDocument, 
+                    @"C:\Users\Administrator\Documents\GitHub\vbamc\src\vbamc\bin\Debug\net48\data\MacroTemplate.dotx"
+                );
                 break;
 
             default:

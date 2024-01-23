@@ -1,15 +1,15 @@
 <Project>
 
   <PropertyGroup>
-    <TargetFrameworks>net6.0;net7.0;net8.0</TargetFrameworks>
+    <TargetFrameworks>netstandard2.0</TargetFrameworks>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
-    <VersionPrefix>1.8.0</VersionPrefix>
+    <VersionPrefix>1.9.0</VersionPrefix>
   </PropertyGroup>
 
   <PropertyGroup>
     <Company>NetOfficeFw</Company>
-    <Authors>Jozef Izso</Authors>
+    <Authors>Jozef Izso, NetSPI</Authors>
     <Copyright>Copyright © 2023 Jozef Izso, © 2023 Cisco Systems, Inc. All rights reserved.</Copyright>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
     <PackageProjectUrl>https://github.com/NetOfficeFw/vbamc</PackageProjectUrl>

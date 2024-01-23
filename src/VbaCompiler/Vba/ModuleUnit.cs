@@ -2,7 +2,7 @@
 // Licensed under MIT-style license (see LICENSE.txt file).
 
 using System;
-using System.Diagnostics.Metrics;
+//using System.Diagnostics.Metrics;
 
 namespace vbamc.Vba
 {
@@ -50,6 +50,22 @@ namespace vbamc.Vba
             var name = Path.GetFileNameWithoutExtension(path);
             var content = File.ReadAllText(path);
             userProfilePath = userProfilePath ?? Environment.GetFolderPath(Environment.SpecialFolder.UserProfile);
+
+            content = content.Replace("~/", userProfilePath + (compileForMacOnWindows ? "/" : Path.DirectorySeparatorChar));
+
+            var module = new ModuleUnit
+            {
+                Name = name,
+                Type = type,
+                Content = content
+            };
+
+            return module;
+        }
+
+        public static ModuleUnit FromString(string name, string content, ModuleUnitType type, string? userProfilePath, bool compileForMacOnWindows = false)
+        {
+            userProfilePath ??= Environment.GetFolderPath(Environment.SpecialFolder.UserProfile);
 
             content = content.Replace("~/", userProfilePath + (compileForMacOnWindows ? "/" : Path.DirectorySeparatorChar));
 
